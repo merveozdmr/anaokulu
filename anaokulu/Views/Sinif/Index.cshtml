@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+
+@using anaokulu.Models
+@model List<Sinif>
+
+
+<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Sınıf Sil</h4>
+            </div>
+            <div class="modal-body">
+                <p class="mesaj"></p>
+                <p class="hata"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn green snfsil">Sınıf Sil</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- END EXAMPLE TABLE PORTLET-->
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light ">
+
+            <div class="portlet-title">
+                <div class="caption font-green">
+                    @*<i class="icon-settings font-green"></i>*@
+                    <div class="col-md-8">
+                        <span class="caption-subject bold uppercase">SINIFLAR</span>
+                    </div>
+
+                </div>
+                <div class="col-md-1" style="float:right; margin:1px auto">
+                    <a href="/Sinif/SinifPDF" id="sample_editable_1_new" class="dt-button buttons-pdf buttons-html5 btn green btn-outline" tabindex="0" aria-controls="sample-1" href="#">
+                        <span>PDF AL</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="btn-group">
+                    <a href="/Sinif/SinifEkle" id="sample_editable_1_new" class="dt-button buttons-pdf buttons-html5 btn green btn-outline">
+                        Yeni Sınıf
+                        <i class="fa fa-plus"></i>
+                    </a>
+
+                </div>
+            </div>
+
+
+
+            <div class="portlet-body">
+                <table class="table table-striped table-hover" id="sample_2">
+                    <thead>
+                        <tr>
+                            <th>SINIF ADI</th>
+                            <th>ÖĞRETMEN</th>
+                            <th>AÇIKLAMA</th>
+                            <th>ETKİNLİK</th>
+                            <th>GÜNCELLE / SİL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Sinif snf in Model)
+                        {
+
+                        <tr class="odd gradeX">
+
+                            <td>
+                                <span class="label label-sm label-warning">@snf.ad</span>
+                            </td>
+
+
+                            @if (snf.Ogretmen == null)
+                            {
+                                <td></td>
+                            }
+                            else
+                            {
+                                <td>@snf.Ogretmen.ad</td>
+                            }
+                            <td>@snf.aciklama</td>
+
+                            <td><a href="/Etkinlik/Index/@snf.sinifID" class="btn btn-outline btn-circle btn-sm green">ETKİNLİKLER</a>
+
+                            <td>
+                                <a href="/Sinif/SinifGuncelle/@snf.sinifID" class="btn btn-outline btn-circle btn-sm purple"><i class="fa fa-edit"></i></a>
+                                <a href="#basic" class="btn btn-outline btn-circle dark btn-sm black modalAc" data-toggle="modal" data-ad="@snf.ad" data-id="@snf.sinifID"><i class="fa fa-trash-o"></i> </a>
+                            </td>
+
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Content/Tema/_documentation/assets/js/jquery-1.8.3.min.js"></script>
+    <script>
+        $(".modalAc").click(function () {
+            var ad = $(this).data("ad");
+            $(".modal-body>p.mesaj").html(ad + " sınıfı silinsin mi?");
+            var id = $(this).data("id");
+
+            $(".snfsil").data("id", id);
+        });
+
+        $(".snfsil").click(function () {
+            var id = $(this).data("id");
+            $.ajax({
+                type: "POST",
+                url: "/Sinif/SinifSil/" + id,
+                success: function (durum) {
+                    if (durum == "başarılı") {
+                        window.location.replace("/Sinif/Index");
+                    } else {
+                        $(".modal-body>p.hata").html("Sınıf silme anında bir hata oluştu! Lütfen tekrar deneyiniz.");
+                    }
+
+                }
+
+            });
+        });
+    </script>
+}
+
+
+

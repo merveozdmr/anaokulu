@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "EtkinliklerimizResim";
+}
+
+@using anaokulu.Models
+@model List<EtkinlikResim>
+<div class="row">
+    <div class="col-md-12">
+        <!-- END EXAMPLE TABLE PORTLET-->
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light ">
+
+            <div class="portlet-title">
+                <div class="caption font-green">
+                    @*<i class="icon-settings font-green"></i>*@
+                    <div class="col-md-8">
+                        <span class="caption-subject bold uppercase">RESİMLER</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="portlet-body">
+                <div class="row">
+
+
+
+                    @foreach (EtkinlikResim etk in Model)
+                    {
+                        <tr class="odd gradeX">
+                            <td>
+                                <div class="col-lg-6 portfolio-item">
+                                    <div class="card h-100">
+                                        <img src="~/Content/Tema/etkinlikresim/@etk.resim" class="card-img-top" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

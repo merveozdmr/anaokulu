@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "SinifEkle";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+@using anaokulu.Models
+
+<div class="tab-pane active" id="tab_0">
+    <div class="portlet light ">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-group"></i>SINIF EKLE
+            </div>
+
+        </div>
+        <div class="portlet-body form">
+            <!-- BEGIN FORM-->
+            <form action="/Sinif/SinifEkle" enctype="multipart/form-data" class="form-horizontal" method="post" role="form">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                            AD
+                            <span class="required" aria-required="true">*</span>
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" name="ad" class="form-control" placeholder="Sınıf Adı Giriniz" aria-required="true" aria-describedby="error">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">RESİM<span class="required" aria-required="true">*</span></label>
+                        <div class="col-md-4">
+                            <input type="file" name="resimGelen" id="exampleInputFile1">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">ÖĞRETMEN<span class="required" aria-required="true">*</span></label>
+                        <div class="col-md-4">
+                            @*<div class="select-height">*@
+
+                            <select class="form-control" name="ogretmenID">
+
+                                @foreach (Ogretmen s in ViewBag.Ogretmen)
+                                {
+                                    <option value="@s.ogretmenID">@s.ad</option>
+
+                                }
+
+                            </select>
+
+                            @*</div>*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                            AÇIKLAMA
+                            <span class="required" aria-required="true">*</span>
+                        </label>
+                        <div class="col-md-4">
+                            <textarea type="text" cols="10" name="aciklama" class="form-control" placeholder="Açıklama Giriniz" aria-required="true" aria-describedby="error"></textarea>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn btn-circle green">EKLE</button>
+                            <a href="/Sinif/Index" class="btn btn-circle grey-salsa btn-outline">İPTAL</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+</div>
+
+

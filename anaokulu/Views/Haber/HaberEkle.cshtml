@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "HaberEkle";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+
+@using anaokulu.Models
+
+<div class="tab-pane active" id="tab_0">
+    <div class="portlet light ">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-user"></i>HABER EKLE
+            </div>
+
+        </div>
+        <div class="portlet-body form">
+            <!-- BEGIN FORM-->
+            <form action="/Haber/HaberEkle" class="form-horizontal" enctype="multipart/form-data" method="post" role="form">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                            HABER BAŞLIK
+                            <span class="required" aria-required="true">*</span>
+                        </label>
+                        <div class="col-md-4">
+                            <input type="text" name="baslik" class="form-control" placeholder="Başlık Giriniz" aria-required="true" aria-describedby="error">
+                            @*<span class="help-block"> bu alanın doldurulması zorunludur! </span>*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">İÇERİK<span class="required" aria-required="true">*</span></label>
+                        <div class="col-md-4">
+                            <textarea type="text" rows="2" name="icerik" class="form-control" placeholder="İçerik Giriniz"></textarea>
+                            @*<span class="help-block"> A block of help text. </span>*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">YAYIN TARİHİ<span class="required" aria-required="true">*</span></label>
+                        <div class="col-md-4">
+                            @Html.TextBox("haberID", DateTimeOffset.Now.ToString("dd-MMM-yyyy"), new { @Class = "form-control", @Name = "tarih" })
+                            @*@Html.DropDownList("yetkiID", (SelectList)ViewBag.Yetki, "Yetki Seçiniz", new { @class = "form-control" })*@
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">KAPAK RESMİ<span class="required" aria-required="true">*</span></label>
+                        <div class="col-md-4">
+                            <input type="file" name="resimGelen" id="exampleInputFile1">
+                            @*<span class="help-block"> A block of help text. </span>*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">HABERİ YAYINLAYAN<span class="required" aria-required="true">*</span></label>
+                        <div class="col-md-4">
+                            @*<div class="select-height">*@
+
+                            <select class="form-control" name="kullaniciID">
+
+                                @foreach (Kullanici k in ViewBag.Kullanici)
+                                {
+                                    <option value="@k.kullaniciID">@k.ad</option>
+
+                                }
+
+                            </select>
+
+                            @*</div>*@
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn btn-circle green">EKLE</button>
+                            <a href="/Kullanici/Index" class="btn btn-circle grey-salsa btn-outline">İPTAL</a>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+
+

@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Siniflarimiz";
+}
+
+
+
+@using anaokulu.Models
+@model List<Sinif>
+<div class="page-content">
+    <div class="container">
+        @foreach (Sinif snf in Model)
+        {
+            <div class="page-content-inner">
+                <div class="profile">
+                        <div class="tabbable-line tabbable-full-width">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1_1">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img src="~/Content/Tema/sresim/@snf.resim" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                    <div class="row">
+                                                        <div class="col-md-8 profile-info">
+                                                            <h4 class="font-green sbold uppercase">@snf.ad</h4>
+                                                            <p>
+                                                                @snf.aciklama
+                                                            </p>
+                                                            <p>
+                                                                <a href="/Etkinlik/Etkinliklerimiz/@snf.sinifID" class="btn btn-outline btn-circle btn-sm green"><b>SINIF ETKİNLİKLERİ İÇİN TIKLAYINIZ</b></a>
+
+                                                            </p>
+
+                                                        </div>
+                                                        <!--end col-md-8-->
+                                                        <div class="col-md-4">
+                                                            <div class="portlet sale-summary">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption font-red sbold"> Sınıf Öğretmeni </div>
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    <ul class="list-unstyled">
+                                                                        <li>
+                                                                            <span class="sale-info">
+                                                                                Öğretmen :
+                                                                                <i class="fa fa-img-up"></i>
+                                                                            </span>
+                                                                            <span class="sale-num"> @snf.Ogretmen.ad @snf.Ogretmen.soyad</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span class="sale-info">
+                                                                                Kayıt Tarihi :
+                                                                                <i class="fa fa-img-down"></i>
+                                                                            </span>
+                                                                            <span class="sale-num">@String.Format("{0:dd/MM/yyyy}", snf.Ogretmen.kayitTarih)</span>
+                                                                        </li>
+
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-md-4-->
+                                                    </div>
+                     
+                                            </div>
+                                            <!--end row-->
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+

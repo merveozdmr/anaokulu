@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "Etkinliklerimiz";
+}
+@using anaokulu.Models
+@model List<Etkinlik>
+<div class="page-content">
+    <div class="container">
+        <div class="portlet light portlet-fit ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-microphone font-dark hide"></i>
+                    <span class="caption-subject bold font-dark uppercase"> Sınıf Aktiviteleri</span>
+                    <span class="caption-helper">Çocuk Gelişimi...</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    @foreach (Etkinlik etk in Model)
+                    {
+                    <div class="col-md-4">
+                        <div class="mt-widget-3">
+                            <div class="mt-head bg-purple">
+                                <div class="mt-head-icon">
+                                    <i class=" icon-graduation"></i>
+                                </div>
+                                <div class="mt-head-desc"> @etk.ad </div>
+                                <span class="mt-head-date"> @String.Format("{0:dd/MM/yyyy}", etk.tarih) </span>
+                                <div class="mt-head-button">
+                                    <a href="/Etkinlik/Detay/@etk.etkinlikID" type="button" class="btn btn-circle btn-outline white btn-sm">DETAY</a>
+                                </div>
+                            </div>
+                            <div class="mt-body-actions-icons">
+                                <div class="btn-group btn-group btn-group-justified">
+                                    <a href="/EtkinlikResim/EtkinliklerimizResim/@etk.etkinlikID" class="btn ">
+                                        <span class="mt-icon">
+                                            <i class="glyphicon glyphicon-camera"></i>
+                                        </span>PHOTO
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    @*<div class="col-md-4">
+                        <div class="mt-widget-3">
+                            <div class="mt-head bg-red">
+                                <div class="mt-head-icon">
+                                    <i class="icon-user"></i>
+                                </div>
+                                <div class="mt-head-desc"> Lorem Ipsum is simply dummy text of the ... </div>
+                                <span class="mt-head-date"> 12 Feb, 2016 </span>
+                                <div class="mt-head-button">
+                                    <button type="button" class="btn btn-circle btn-outline white btn-sm">Add</button>
+                                </div>
+                            </div>
+                            <div class="mt-body-actions-icons">
+                                <div class="btn-group btn-group btn-group-justified">
+                                    <a href="javascript:;" class="btn ">
+                                        <span class="mt-icon">
+                                            <i class="glyphicon glyphicon-align-justify"></i>
+                                        </span>RECORD
+                                    </a>
+                                    <a href="javascript:;" class="btn ">
+                                        <span class="mt-icon">
+                                            <i class="glyphicon glyphicon-camera"></i>
+                                        </span>PHOTO
+                                    </a>
+                                    <a href="javascript:;" class="btn ">
+                                        <span class="mt-icon">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </span>DATE
+                                    </a>
+                                    <a href="javascript:;" class="btn ">
+                                        <span class="mt-icon">
+                                            <i class="glyphicon glyphicon-record"></i>
+                                        </span>RANC
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mt-widget-3">
+                            <div class="mt-head bg-green">
+                                <div class="mt-head-icon">
+                                    <i class=" icon-graduation"></i>
+                                </div>
+                                <div class="mt-head-desc"> Lorem Ipsum is simply dummy text of the ... </div>
+                                <span class="mt-head-date"> 3 Mar, 2015 </span>
+                                <div class="mt-head-button">
+                                    <button type="button" class="btn btn-circle btn-outline white btn-sm">Add</button>
+                                </div>
+                            </div>
+                            <div class="mt-body-actions-icons">
+                                <div class="btn-group btn-group btn-group-justified">
+                                    <a href="javascript:;" class="btn ">
+                                        <span class="mt-icon">
+                                            <i class="glyphicon glyphicon-align-justify"></i>
+                                        </span>RECORD
+                                    </a>
+                                    <a href="javascript:;" class="btn ">
+                                        <span class="mt-icon">
+                                            <i class="glyphicon glyphicon-camera"></i>
+                                        </span>PHOTO
+                                    </a>
+                                    <a href="javascript:;" class="btn ">
+                                        <span class="mt-icon">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </span>DATE
+                                    </a>
+                                    <a href="javascript:;" class="btn ">
+                                        <span class="mt-icon">
+                                            <i class="glyphicon glyphicon-record"></i>
+                                        </span>RANC
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

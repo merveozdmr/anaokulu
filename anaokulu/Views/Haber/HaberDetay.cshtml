@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "HaberDetay";
+}
+
+@using anaokulu.Models
+@model List<Haber>
+<div class="page-content">
+    <div class="container">
+        @foreach (Haber hbr in Model)
+        {
+            <div class="page-content-inner">
+                <div class="profile">
+                    <div class="tabbable-line tabbable-full-width">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_1_1">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="~/Content/Tema/haberresim/@hbr.kapakResmi" style="width:200px" height="200px"/>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="row">
+                                                <div class="col-md-8 profile-info">
+                                                    <h4 class="font-green sbold uppercase">@hbr.baslik</h4>
+                                                    <p>
+                                                        @hbr.icerik
+                                                    </p>
+                                                    
+
+                                                </div>
+                                                <!--end col-md-8-->
+                                               <div class="col-md-4">
+                                                    <div class="portlet sale-summary">
+                                                        <div class="portlet-title">
+                                                            <div class="caption font-yellow sbold"> Haber Bilgisi </div>
+                                                        </div>
+                                                        <div class="portlet-body">
+                                                            <ul class="list-unstyled">
+                                                                <li>
+                                                                    <span class="sale-info">
+                                                                        Haber sahibi :
+                                                                        <i class="fa fa-img-up"></i>
+                                                                    </span>
+                                                                    <span class="sale-num"> @hbr.Kullanici.ad @hbr.Kullanici.soyad</span>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="sale-info">
+                                                                        Haber Tarihi :
+                                                                        <i class="fa fa-img-down"></i>
+                                                                    </span>
+                                                                    <span class="sale-num">@String.Format("{0:dd/MM/yyyy}", hbr.tarih)</span>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end col-md-4-->
+                                            </div>
+
+                                        </div>
+                                        <!--end row-->
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

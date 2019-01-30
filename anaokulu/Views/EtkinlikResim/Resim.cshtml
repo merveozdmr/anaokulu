@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Resim";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+
+@using anaokulu.Models
+@model List<EtkinlikResim>
+
+<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Resim Sil</h4>
+            </div>
+            <div class="modal-body">
+                <p class="mesaj"></p>
+                <p class="hata"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn green ressil">Resim Sil</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- END EXAMPLE TABLE PORTLET-->
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light ">
+
+            <div class="portlet-title">
+                <div class="caption font-green">
+                    @*<i class="icon-settings font-green"></i>*@
+                    <div class="col-md-8">
+                        <span class="caption-subject bold uppercase">RESİMLER</span>
+                    </div>
+
+                </div>
+                <div class="col-md-1" style="float:right; margin:1px auto">
+                    <a href="/Kullanici/KullaniciPDF" id="sample_editable_1_new" class="dt-button buttons-pdf buttons-html5 btn green btn-outline" tabindex="0" aria-controls="sample-1" href="#">
+
+                        <span>PDF AL</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="btn-group">
+                    <a href="/EtkinlikResim/ResimEkle" id="sample_editable_1_new" class="dt-button buttons-pdf buttons-html5 btn green btn-outline">
+                        Yeni Resim
+                        <i class="fa fa-plus"></i>
+                    </a>
+
+                </div>
+            </div>
+            <div class="col-md-3" style="float:right; margin:5px auto">
+                <form class="search-form search-form-expanded" action="page_general_search_3.html" method="GET">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <a href="javascript:;" class="btn submit">
+                                <i class="icon-magnifier"></i>
+                            </a>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Search..." name="query">
+
+                    </div>
+                </form>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+
+
+
+                    @foreach (EtkinlikResim etk in Model)
+                    {
+                        <tr class="odd gradeX">
+                            <td>
+                                <div class="col-lg-6 portfolio-item">
+                                    <div class="card h-100">
+                                        <a href="#"><img src="~/Content/Tema/etkinlikresim/@etk.resim" class="card-img-top" /></a>
+                                        <div class="card-body">
+                                            <h4 class="card-title"></h4>
+                                            <p class="card-text">@etk.aciklama</p>
+                                        </div>
+                                    </div>
+                            <td>
+                                <a href="#basic" class="btn btn-outline btn-circle dark btn-sm black modalAc" data-toggle="modal" data-ad="@etk.aciklama" data-id="@etk.etkinlikResimID"><i class="fa fa-trash-o"></i> </a>
+                            </td>
+                            </td>
+                        </tr>
+                    }
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/Tema/_documentation/assets/js/jquery-1.8.3.min.js"></script>
+    <script>
+        $(".modalAc").click(function () {
+            var aciklama = $(this).data("ad");
+            $(".modal-body>p.mesaj").html(aciklama + " resmi silinsin mi?");
+            var id = $(this).data("id");
+
+            $(".ressil").data("id", id);
+        });
+
+        $(".ressil").click(function () {
+            var id = $(this).data("id");
+            $.ajax({
+                type: "POST",
+                url: "/EtkinlikResim/ResimSil/" + id,
+                success: function (durum) {
+                    if (durum == "başarılı") {
+                        window.location.replace("/Sinif/Index");
+                    } else {
+                        $(".modal-body>p.hata").html("Resim silme anında bir hata oluştu! Lütfen tekrar deneyiniz.");
+                    }
+
+                }
+
+            });
+        });
+    </script>
+}
